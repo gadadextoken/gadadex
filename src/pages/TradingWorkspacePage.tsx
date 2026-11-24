@@ -8,7 +8,9 @@ import { OrderBook } from '../components/trade/OrderBook';
 import { RecentTrades } from '../components/trade/RecentTrades';
 import { OrderForm } from '../components/trade/OrderForm';
 import { OrdersTable } from '../components/trade/OrdersTable';
-import { ExternalLink, ShieldCheck, Coins } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Coins, BookOpen, Sparkles } from 'lucide-react';
+import { WhitepaperModal } from '../components/gdt/WhitepaperModal';
+import { GDT_SPECIFICATIONS } from '../data/gdtEcosystemData';
 
 export const TradingWorkspacePage: React.FC = () => {
   const { pair } = useParams<{ pair: string }>();
@@ -19,6 +21,7 @@ export const TradingWorkspacePage: React.FC = () => {
   const { checkLimitOrders } = useTradingStore();
 
   const [clickedPrice, setClickedPrice] = useState<number | undefined>(undefined);
+  const [isWhitepaperOpen, setIsWhitepaperOpen] = useState(false);
 
   // Sync route param with store
   useEffect(() => {
@@ -64,19 +67,26 @@ export const TradingWorkspacePage: React.FC = () => {
         <div className="bg-gradient-to-r from-gada-violet/25 via-gada-surface to-gada-surface border-b border-gada-violet/30 px-4 py-2 flex items-center justify-between text-xs flex-wrap gap-2">
           <div className="flex items-center gap-2">
             <span className="px-2 py-0.5 rounded-full bg-gada-magenta/20 text-gada-magenta font-bold text-[10px] border border-gada-magenta/30 flex items-center gap-1">
-              <Coins className="w-3 h-3" />
+              <Sparkles className="w-3 h-3" />
               BNB Smart Chain (BEP-20)
             </span>
             <span className="text-gada-muted hidden sm:inline">
               Contract:{' '}
               <code className="text-white font-mono select-all text-[11px]">
-                0x090458b49D6deAA9F7334a5e628aa26D82A3A082
+                {GDT_SPECIFICATIONS.contractAddress}
               </code>
             </span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsWhitepaperOpen(true)}
+              className="text-gada-violet hover:text-gada-magenta font-semibold flex items-center gap-1 text-[11px] transition-colors"
+            >
+              <BookOpen className="w-3 h-3" />
+              <span>Read Whitepaper v1.0</span>
+            </button>
             <a
-              href="https://gadatoken.com"
+              href={GDT_SPECIFICATIONS.parentPortal}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gada-magenta hover:underline font-semibold flex items-center gap-1 text-[11px]"
@@ -85,7 +95,7 @@ export const TradingWorkspacePage: React.FC = () => {
               <ExternalLink className="w-3 h-3" />
             </a>
             <Link to="/gdt" className="text-white hover:text-gada-magenta text-[11px] font-medium">
-              Ecosystem & Tokenomics &rarr;
+              Tokenomics & Roadmap &rarr;
             </Link>
           </div>
         </div>
@@ -129,6 +139,12 @@ export const TradingWorkspacePage: React.FC = () => {
           <OrdersTable />
         </div>
       </div>
+
+      {/* Embedded Whitepaper Reader Modal */}
+      <WhitepaperModal
+        isOpen={isWhitepaperOpen}
+        onClose={() => setIsWhitepaperOpen(false)}
+      />
     </div>
   );
 };

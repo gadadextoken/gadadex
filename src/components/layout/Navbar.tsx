@@ -47,25 +47,29 @@ export const Navbar: React.FC = () => {
   const ecosystemLinks = [
     {
       name: 'gadatoken.com',
-      desc: 'Official GADA Token Portal & Whitepaper',
+      desc: 'Official Parent Token Authority & Whitepaper',
+      badge: 'Parent Portal',
       url: 'https://gadatoken.com',
       icon: Coins,
     },
     {
       name: 'gada.chat',
       desc: 'Social Networking & Decentralized Chat',
+      badge: 'Social',
       url: 'https://gada.chat',
       icon: MessageCircle,
     },
     {
       name: 'gadavoice.com',
       desc: 'Voice/Video Messenger & Live Streaming',
+      badge: 'Streaming',
       url: 'https://gadavoice.com',
       icon: PhoneCall,
     },
     {
       name: 'gadacoop.org',
       desc: 'Decentralized Commerce & Cooperatives',
+      badge: 'Commerce',
       url: 'https://gadacoop.org',
       icon: Store,
     },
@@ -158,11 +162,18 @@ export const Navbar: React.FC = () => {
                               <Icon className="w-3.5 h-3.5" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-white group-hover:text-gada-magenta transition-colors">
-                                  {item.name}
-                                </span>
-                                <ExternalLink className="w-3 h-3 text-gada-subtle group-hover:text-white" />
+                              <div className="flex items-center justify-between gap-1.5">
+                                <div className="flex items-center gap-1.5 min-w-0">
+                                  <span className="text-xs font-bold text-white group-hover:text-gada-magenta transition-colors truncate">
+                                    {item.name}
+                                  </span>
+                                  {item.badge && (
+                                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-gada-midnight text-gada-magenta border border-gada-border shrink-0">
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <ExternalLink className="w-3 h-3 text-gada-subtle group-hover:text-white shrink-0" />
                               </div>
                               <span className="text-[10px] text-gada-muted block truncate">
                                 {item.desc}

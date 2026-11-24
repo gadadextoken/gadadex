@@ -58,6 +58,32 @@ export const AssetDetailPage: React.FC = () => {
         </div>
       </div>
 
+      {/* GDT Ecosystem Anchor Banner if viewing GDT */}
+      {asset.symbol === 'GDT' && (
+        <div className="bg-gradient-to-r from-[#24005E] via-gada-midnight to-gada-surface border border-gada-violet/50 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-glow-purple">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-gada-magenta uppercase tracking-wider">
+                Official Ecosystem Asset
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-semibold">
+                Fixed 50B Supply
+              </span>
+            </div>
+            <p className="text-xs text-gada-muted">
+              Synchronized directly with <a href="https://gadatoken.com" target="_blank" rel="noopener noreferrer" className="text-white underline font-semibold hover:text-gada-magenta">gadatoken.com</a>. Verified BEP-20 standard on BNB Smart Chain.
+            </p>
+          </div>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <Link to="/gdt">
+              <Button variant="outline" size="sm" className="text-xs">
+                View Full Tokenomics & Whitepaper &rarr;
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Asset Header Info */}
       <div className="bg-gada-surface border border-gada-border rounded-2xl p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
