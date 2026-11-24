@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldAlert, ExternalLink, Globe, Send, MessageSquare, Share2 } from 'lucide-react';
+import { ShieldAlert, ExternalLink, Globe, Send, MessageSquare, Share2, Coins } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -23,46 +23,49 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-sm text-gada-muted/80 max-w-sm leading-relaxed">
-              A modern, high-performance cryptocurrency exchange simulation platform. Explore digital assets, test trading strategies, and experience exchange-grade interfaces in a risk-free virtual environment.
+              A modern, high-performance cryptocurrency exchange simulation platform. Directly connected to the Gada ecosystem and the official GADA TOKEN on BNB Smart Chain.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://twitter.com"
+                href="https://t.me/gadachat"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gada-elevated hover:bg-gada-violet/20 hover:text-white transition-colors"
-                aria-label="Community"
+                aria-label="Telegram Community"
+                title="Join Telegram: @gadachat"
+              >
+                <Send className="w-4 h-4 text-gada-magenta" />
+              </a>
+              <a
+                href="https://facebook.com/share/1E1epkWBcr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-gada-elevated hover:bg-gada-violet/20 hover:text-white transition-colors"
+                aria-label="Facebook Community"
+                title="Facebook Community"
               >
                 <Share2 className="w-4 h-4" />
               </a>
               <a
-                href="https://t.me"
+                href="https://gadatoken.com"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gada-elevated hover:bg-gada-violet/20 hover:text-white transition-colors"
-                aria-label="Telegram"
+                aria-label="gadatoken.com"
+                title="Official GDT Portal"
               >
-                <Send className="w-4 h-4" />
-              </a>
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-lg bg-gada-elevated hover:bg-gada-violet/20 hover:text-white transition-colors"
-                aria-label="Discussion"
-              >
-                <MessageSquare className="w-4 h-4" />
+                <Coins className="w-4 h-4 text-gada-magenta" />
               </a>
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gada-elevated text-xs text-gada-muted border border-gada-border">
                 <Globe className="w-3.5 h-3.5 text-gada-magenta" />
-                <span>Cloudflare Global Edge</span>
+                <span>BNB Smart Chain (BEP-20)</span>
               </div>
             </div>
           </div>
 
           {/* Platform Links */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Platform</h4>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Exchange</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/markets" className="hover:text-gada-magenta transition-colors">
@@ -92,30 +95,64 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* GADA Ecosystem */}
+          {/* Connected GADA Ecosystem */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Ecosystem</h4>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">GADA Ecosystem</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/gdt" className="hover:text-gada-magenta transition-colors font-medium text-white flex items-center gap-1.5">
-                  <span>GADA Token (GDT)</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-gada-magenta/20 text-gada-magenta">Featured</span>
-                </Link>
+                <a
+                  href="https://gadatoken.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gada-magenta transition-colors font-medium text-white flex items-center justify-between"
+                >
+                  <span>gadatoken.com</span>
+                  <ExternalLink className="w-3 h-3 text-gada-magenta" />
+                </a>
               </li>
               <li>
-                <Link to="/trade/GDT-USDT" className="hover:text-gada-magenta transition-colors">
-                  Trade GDT/USDT
-                </Link>
+                <a
+                  href="https://gada.chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gada-magenta transition-colors flex items-center justify-between"
+                >
+                  <span>gada.chat (Social)</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
               </li>
               <li>
-                <Link to="/account" className="hover:text-gada-magenta transition-colors">
-                  VIP Demo Tier
-                </Link>
+                <a
+                  href="https://gadavoice.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gada-magenta transition-colors flex items-center justify-between"
+                >
+                  <span>gadavoice.com (Voice)</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
               </li>
               <li>
-                <Link to="/learn" className="hover:text-gada-magenta transition-colors">
-                  Gada Architecture
-                </Link>
+                <a
+                  href="https://gadacoop.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gada-magenta transition-colors flex items-center justify-between"
+                >
+                  <span>gadacoop.org (Commerce)</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://bscscan.com/token/0x090458b49D6deAA9F7334a5e628aa26D82A3A082"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gada-magenta transition-colors flex items-center justify-between text-xs text-gada-muted pt-1"
+                >
+                  <span>BscScan Contract Explorer</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
               </li>
             </ul>
           </div>
@@ -124,6 +161,11 @@ export const Footer: React.FC = () => {
           <div className="space-y-3">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Education & Risk</h4>
             <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/gdt" className="hover:text-gada-magenta transition-colors font-medium text-white">
+                  GDT Token Overview
+                </Link>
+              </li>
               <li>
                 <Link to="/learn" className="hover:text-gada-magenta transition-colors">
                   Crypto Glossary
@@ -141,11 +183,6 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/learn" className="hover:text-gada-magenta transition-colors">
-                  Risk Management
-                </Link>
-              </li>
-              <li>
-                <Link to="/learn" className="hover:text-gada-magenta transition-colors">
                   Simulation Protocol
                 </Link>
               </li>
@@ -159,13 +196,21 @@ export const Footer: React.FC = () => {
             <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-white block mb-0.5">Simulated Trading Disclaimer & Risk Disclosure:</strong>
-              GADADEX is an educational simulation platform intended solely for technical, interface, and market demonstration purposes. All orders, holdings, prices, order books, and transaction records on this website are simulated. Gadadex does not provide financial services, custody, deposit accounts, withdrawals, or real-money trading execution. Virtual tokens (including GDT) within this application have no monetary value and cannot be redeemed for fiat currency or actual digital assets.
+              GADADEX is an educational exchange simulation platform connected to the Gada ecosystem. All trading operations, balances, prices, order books, and transaction records on this website are simulated. Gadadex does not provide financial custody, real cash deposits, withdrawals, or real-money order execution. For official token documentation, visit{' '}
+              <a
+                href="https://gadatoken.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gada-magenta hover:underline font-semibold"
+              >
+                gadatoken.com
+              </a>.
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-gada-subtle gap-2">
             <div>
-              &copy; {new Date().getFullYear()} GADADEX. Built for the GADA Ecosystem. All rights reserved.
+              &copy; {new Date().getFullYear()} GADADEX &bull; Connected to <a href="https://gadatoken.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">gadatoken.com</a>. All rights reserved.
             </div>
             <div className="flex items-center gap-4">
               <span className="hover:text-white cursor-pointer transition-colors">Terms of Simulation</span>

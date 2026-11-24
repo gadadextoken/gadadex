@@ -12,7 +12,12 @@ import {
   X,
   PlusCircle,
   Coins,
-  Sparkles,
+  Globe,
+  ExternalLink,
+  ChevronDown,
+  MessageCircle,
+  PhoneCall,
+  Store,
 } from 'lucide-react';
 import { usePortfolioStore } from '../../store/portfolioStore';
 import { useNotificationStore } from '../../store/notificationStore';
@@ -22,6 +27,7 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [ecosystemDropdownOpen, setEcosystemDropdownOpen] = useState(false);
 
   const { balances, claimFaucet } = usePortfolioStore();
   const { getUnreadCount } = useNotificationStore();
@@ -36,6 +42,33 @@ export const Navbar: React.FC = () => {
     { name: 'Watchlist', path: '/watchlist', icon: Star },
     { name: 'Learn', path: '/learn', icon: BookOpen },
     { name: 'GDT Token', path: '/gdt', icon: Coins, highlight: true },
+  ];
+
+  const ecosystemLinks = [
+    {
+      name: 'gadatoken.com',
+      desc: 'Official GADA Token Portal & Whitepaper',
+      url: 'https://gadatoken.com',
+      icon: Coins,
+    },
+    {
+      name: 'gada.chat',
+      desc: 'Social Networking & Decentralized Chat',
+      url: 'https://gada.chat',
+      icon: MessageCircle,
+    },
+    {
+      name: 'gadavoice.com',
+      desc: 'Voice/Video Messenger & Live Streaming',
+      url: 'https://gadavoice.com',
+      icon: PhoneCall,
+    },
+    {
+      name: 'gadacoop.org',
+      desc: 'Decentralized Commerce & Cooperatives',
+      url: 'https://gadacoop.org',
+      icon: Store,
+    },
   ];
 
   return (
@@ -72,7 +105,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                       isActive
                         ? 'bg-gada-elevated text-white border border-gada-violet/40 shadow-glow-purple font-semibold'
                         : link.highlight
@@ -88,6 +121,60 @@ export const Navbar: React.FC = () => {
                   </Link>
                 );
               })}
+
+              {/* Ecosystem Dropdown Trigger */}
+              <div className="relative">
+                <button
+                  onClick={() => setEcosystemDropdownOpen(!ecosystemDropdownOpen)}
+                  onBlur={() => setTimeout(() => setEcosystemDropdownOpen(false), 200)}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                    ecosystemDropdownOpen
+                      ? 'bg-gada-elevated text-white'
+                      : 'text-gada-muted hover:text-white hover:bg-gada-elevated/60'
+                  }`}
+                >
+                  <Globe className="w-4 h-4 text-gada-magenta" />
+                  <span>Ecosystem</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${ecosystemDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {ecosystemDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-64 rounded-2xl bg-gada-surface border border-gada-border shadow-2xl p-2 z-50 animate-fadeIn">
+                    <div className="px-3 py-1.5 text-[10px] font-bold text-gada-subtle uppercase tracking-wider">
+                      Connected GADA Ecosystem
+                    </div>
+                    <div className="space-y-1">
+                      {ecosystemLinks.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <a
+                            key={item.name}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gada-elevated transition-colors group"
+                          >
+                            <div className="p-1.5 rounded-lg bg-gada-violet/20 text-gada-magenta group-hover:scale-105 transition-transform mt-0.5">
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-white group-hover:text-gada-magenta transition-colors">
+                                  {item.name}
+                                </span>
+                                <ExternalLink className="w-3 h-3 text-gada-subtle group-hover:text-white" />
+                              </div>
+                              <span className="text-[10px] text-gada-muted block truncate">
+                                {item.desc}
+                              </span>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
             </nav>
           </div>
 
@@ -197,6 +284,33 @@ export const Navbar: React.FC = () => {
                 </Link>
               );
             })}
+
+            {/* Mobile Ecosystem Apps Section */}
+            <div className="pt-2 border-t border-gada-border/60">
+              <span className="text-[10px] font-bold text-gada-subtle uppercase px-3 block mb-1">
+                GADA Ecosystem Network
+              </span>
+              <div className="grid grid-cols-2 gap-1.5">
+                <a
+                  href="https://gadatoken.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-2 rounded-lg bg-gada-midnight text-xs text-white border border-gada-border"
+                >
+                  <span className="font-semibold text-gada-magenta">gadatoken.com</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
+                <a
+                  href="https://gada.chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-2 rounded-lg bg-gada-midnight text-xs text-white border border-gada-border"
+                >
+                  <span>gada.chat</span>
+                  <ExternalLink className="w-3 h-3 text-gada-subtle" />
+                </a>
+              </div>
+            </div>
 
             <Link
               to="/account"

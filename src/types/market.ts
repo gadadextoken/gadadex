@@ -16,6 +16,10 @@ export interface MarketAsset {
   allTimeHigh?: number;
   rank: number;
   icon?: string;
+  network?: string;
+  contractAddress?: string;
+  websiteUrl?: string;
+  explorerUrl?: string;
 }
 
 export interface Candle {

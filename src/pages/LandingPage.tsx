@@ -9,9 +9,12 @@ import {
   Sparkles,
   BookOpen,
   Layers,
-  ArrowUpRight,
-  ArrowDownRight,
   Coins,
+  Globe,
+  ExternalLink,
+  MessageCircle,
+  PhoneCall,
+  Store,
 } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { Sparkline } from '../components/common/Sparkline';
@@ -27,6 +30,37 @@ export const LandingPage: React.FC = () => {
 
   const featured = assets.slice(0, 6);
 
+  const ecosystemLinks = [
+    {
+      name: 'gadatoken.com',
+      badge: 'Official Token Portal',
+      url: 'https://gadatoken.com',
+      icon: Coins,
+      desc: 'Official BEP-20 token specifications & whitepaper',
+    },
+    {
+      name: 'gada.chat',
+      badge: 'Decentralized Social',
+      url: 'https://gada.chat',
+      icon: MessageCircle,
+      desc: 'Encrypted messaging & creator tipping',
+    },
+    {
+      name: 'gadavoice.com',
+      badge: 'Voice & Live Rooms',
+      url: 'https://gadavoice.com',
+      icon: PhoneCall,
+      desc: 'HD voice, video calls & creator streaming',
+    },
+    {
+      name: 'gadacoop.org',
+      badge: 'Decentralized Commerce',
+      url: 'https://gadacoop.org',
+      icon: Store,
+      desc: 'P2P marketplace trade & cooperative economy',
+    },
+  ];
+
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
@@ -37,7 +71,7 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gada-violet/15 border border-gada-violet/30 text-gada-magenta text-xs font-semibold shadow-glow-purple animate-fadeIn">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Next-Generation Exchange Simulation Environment</span>
+            <span>Connected to the Official GADA Ecosystem &bull; gadatoken.com</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
@@ -167,12 +201,18 @@ export const LandingPage: React.FC = () => {
       {/* GDT Token Spotlight */}
       {gdt && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl bg-gradient-to-r from-[#24005E]/80 via-[#1F1730] to-gada-surface border border-gada-violet/40 p-6 sm:p-10 overflow-hidden shadow-glow-purple">
+          <div className="relative rounded-3xl bg-gradient-to-r from-[#24005E]/90 via-[#1F1730] to-gada-surface border border-gada-violet/50 p-6 sm:p-10 overflow-hidden shadow-glow-purple">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
               <div className="lg:col-span-2 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gada-magenta/20 border border-gada-magenta/40 text-gada-magenta text-xs font-bold">
-                  <Coins className="w-3.5 h-3.5" />
-                  <span>ECOSYSTEM SPOTLIGHT</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gada-magenta/20 border border-gada-magenta/40 text-gada-magenta text-xs font-bold">
+                    <Coins className="w-3.5 h-3.5" />
+                    <span>ECOSYSTEM SPOTLIGHT</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+                    <Globe className="w-3.5 h-3.5" />
+                    <span>BNB Smart Chain (BEP-20)</span>
+                  </span>
                 </div>
 
                 <h2 className="text-2xl sm:text-4xl font-black text-white">
@@ -180,7 +220,7 @@ export const LandingPage: React.FC = () => {
                 </h2>
 
                 <p className="text-sm text-gada-muted leading-relaxed max-w-xl">
-                  {gdt.description} Experience zero-slippage testing, simulate VIP fee discounts, and explore the future of the Gada digital ecosystem.
+                  {gdt.description} Built on BNB Smart Chain with a fixed 50 Billion total supply, connecting social chat, voice streaming, and decentralized commerce.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-6 pt-2 num-tabular">
@@ -189,26 +229,37 @@ export const LandingPage: React.FC = () => {
                     <span className="text-xl font-black text-white">${gdt.price.toFixed(4)} USDT</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-gada-subtle uppercase block">24h Movement</span>
-                    <span className="text-xl font-black text-gada-up">+{gdt.change24h.toFixed(2)}%</span>
+                    <span className="text-[10px] text-gada-subtle uppercase block">Total Supply</span>
+                    <span className="text-xl font-black text-white">50 Billion GDT</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-gada-subtle uppercase block">Simulated Supply</span>
-                    <span className="text-xl font-black text-white">{gdt.circulatingSupply}</span>
+                    <span className="text-[10px] text-gada-subtle uppercase block">Verified Contract</span>
+                    <span className="text-xs font-mono font-bold text-gada-magenta block truncate max-w-[160px]">
+                      0x090458...A082
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 pt-3">
+                <div className="flex flex-wrap items-center gap-4 pt-3">
                   <Link to="/trade/GDT-USDT">
                     <Button variant="primary" size="md">
-                      Trade GDT/USDT
+                      Trade GDT/USDT (Simulated)
                     </Button>
                   </Link>
                   <Link to="/gdt">
                     <Button variant="outline" size="md">
-                      Token Details & FAQ
+                      Contract & Details
                     </Button>
                   </Link>
+                  <a
+                    href="https://gadatoken.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-gada-magenta hover:underline py-2"
+                  >
+                    <span>Official gadatoken.com Portal</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
 
@@ -222,17 +273,72 @@ export const LandingPage: React.FC = () => {
                   />
                   <div>
                     <h3 className="text-base font-extrabold text-white">GADA TOKEN</h3>
-                    <span className="text-xs text-gada-magenta font-semibold">GDT &bull; Simulated Utility</span>
+                    <span className="text-xs text-gada-magenta font-semibold">GDT &bull; BEP-20 Standard</span>
                   </div>
-                  <span className="text-[10px] text-gada-subtle px-2.5 py-1 rounded-full bg-gada-elevated border border-gada-border">
-                    Paper Trading Active
-                  </span>
+                  <a
+                    href="https://gadatoken.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] text-white hover:text-gada-magenta flex items-center gap-1 font-semibold"
+                  >
+                    <span>gadatoken.com</span>
+                    <ExternalLink className="w-3 h-3 text-gada-magenta" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
       )}
+
+      {/* Connected Ecosystem Applications Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-bold text-white">
+            Official GADA Ecosystem Platforms
+          </h2>
+          <p className="text-xs sm:text-sm text-gada-muted">
+            Directly connected decentralized applications powered by GDT
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {ecosystemLinks.map((app) => {
+            const Icon = app.icon;
+            return (
+              <a
+                key={app.name}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-5 rounded-2xl bg-gada-surface hover:bg-gada-elevated border border-gada-border hover:border-gada-violet/40 transition-all group flex flex-col justify-between h-40"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="p-2 rounded-xl bg-gada-violet/20 text-gada-magenta border border-gada-violet/30">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] text-gada-subtle px-2 py-0.5 rounded bg-gada-midnight border border-gada-border">
+                      {app.badge}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-white group-hover:text-gada-magenta transition-colors">
+                    {app.name}
+                  </h3>
+                  <p className="text-xs text-gada-muted mt-1 line-clamp-2">
+                    {app.desc}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between text-xs font-semibold text-gada-magenta pt-2 border-t border-gada-border/40">
+                  <span>Visit Platform</span>
+                  <ExternalLink className="w-3 h-3" />
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
 
       {/* Platform Features Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
